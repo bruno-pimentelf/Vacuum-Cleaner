@@ -184,7 +184,6 @@ class RoombaBehaviorTree(BehaviorTree):
     def __init__(self):
         first_selector = SelectorNode("root_selector")
         super().__init__(first_selector)
-        # Todo: construct the tree here
 
         first_sequence = SequenceNode("root_sequence_1")
         second_sequence = SequenceNode("root_sequence_2")
@@ -204,16 +203,13 @@ class RoombaBehaviorTree(BehaviorTree):
 class MoveForwardNode(LeafNode):
     def __init__(self):
         super().__init__("MoveForward")
-        # Todo: add initialization code
         self.actual_time = 0
 
     def enter(self, agent):
-        # Todo: add enter logic
         self.actual_time = 0
         agent.set_velocity(FORWARD_SPEED, 0)
 
     def execute(self, agent):
-        # Todo: add execution logic
         self.actual_time += SAMPLE_TIME
 
         if self.actual_time > MOVE_FORWARD_TIME:
@@ -228,15 +224,12 @@ class MoveForwardNode(LeafNode):
 class MoveInSpiralNode(LeafNode):
     def __init__(self):
         super().__init__("MoveInSpiral")
-        # Todo: add initialization code
         self.actual_time = 0
 
     def enter(self, agent):
-        # Todo: add enter logic
         self.actual_time = 0
 
     def execute(self, agent):
-        # Todo: add execution logic
         agent.set_velocity(FORWARD_SPEED, FORWARD_SPEED / (INITIAL_RADIUS_SPIRAL + SPIRAL_FACTOR * self.actual_time))
         if self.actual_time > MOVE_IN_SPIRAL_TIME:
             return ExecutionStatus.SUCCESS
@@ -250,15 +243,12 @@ class MoveInSpiralNode(LeafNode):
 class GoBackNode(LeafNode):
     def __init__(self):
         super().__init__("GoBack")
-        # Todo: add initialization code
         self.actual_time = 0
 
     def enter(self, agent):
-        # Todo: add enter logic
         self.actual_time = 0
 
     def execute(self, agent):
-        # Todo: add execution logic
         agent.set_velocity(BACKWARD_SPEED, 0)
         self.actual_time += SAMPLE_TIME
 
@@ -271,21 +261,18 @@ class GoBackNode(LeafNode):
 class RotateNode(LeafNode):
     def __init__(self):
         super().__init__("Rotate")
-        # Todo: add initialization code
         self.actual_time = 0
         self.go_front = False
         self.rand_direction = random.choice([-1, 1])
         self.rang_angle = random.uniform(-3.14, 3.14)
 
     def enter(self, agent):
-        # Todo: add enter logic
         self.actual_time = 0
         self.go_front = False
         self.rand_direction = random.choice([-1, 1])
         self.rang_angle = random.uniform(-3.14, 3.14)
 
     def execute(self, agent):
-        # Todo: add execution logic
         agent.set_velocity(0, self.rand_direction)
         self.actual_time += SAMPLE_TIME
 

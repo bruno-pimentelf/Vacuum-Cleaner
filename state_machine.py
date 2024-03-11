@@ -52,11 +52,9 @@ class State(object):
 class MoveForwardState(State):
     def __init__(self):
         super().__init__("MoveForward")
-        # Todo: add initialization code
         self.actual_time = 0
 
     def check_transition(self, agent, state_machine):
-        # Todo: add logic to check and execute state transition
 
         if self.actual_time > MOVE_FORWARD_TIME:
             state_machine.change_state(MoveInSpiralState())
@@ -65,7 +63,6 @@ class MoveForwardState(State):
             state_machine.change_state(GoBackState())
 
     def execute(self, agent):
-        # Todo: add execution logic
         agent.set_velocity(FORWARD_SPEED, 0)
         self.actual_time += SAMPLE_TIME
 
@@ -74,11 +71,9 @@ class MoveInSpiralState(State):
 
     def __init__(self):
         super().__init__("MoveInSpiral")
-        # Todo: add initialization code
         self.actual_time = 0
 
     def check_transition(self, agent, state_machine):
-        # Todo: add logic to check and execute state transition
         if self.actual_time > MOVE_IN_SPIRAL_TIME:
             state_machine.change_state(MoveForwardState())
 
@@ -86,7 +81,6 @@ class MoveInSpiralState(State):
             state_machine.change_state(GoBackState())
 
     def execute(self, agent):
-        # Todo: add execution logic
         agent.set_velocity(FORWARD_SPEED, FORWARD_SPEED/(INITIAL_RADIUS_SPIRAL + SPIRAL_FACTOR * self.actual_time))
         self.actual_time += SAMPLE_TIME
 
@@ -94,16 +88,13 @@ class MoveInSpiralState(State):
 class GoBackState(State):
     def __init__(self):
         super().__init__("GoBack")
-        # Todo: add initialization code
         self.actual_time = 0
 
     def check_transition(self, agent, state_machine):
-        # Todo: add logic to check and execute state transition
         if self.actual_time > GO_BACK_TIME:
             state_machine.change_state(RotateState())
 
     def execute(self, agent):
-        # Todo: add execution logic
         agent.set_velocity(BACKWARD_SPEED, 0)
         self.actual_time += SAMPLE_TIME
 
@@ -111,7 +102,6 @@ class GoBackState(State):
 class RotateState(State):
     def __init__(self):
         super().__init__("Rotate")
-        # Todo: add initialization code
         self.actual_time = 0
         self.go_front = False
         self.rand_direction = random.choice([-1, 1])
